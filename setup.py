@@ -21,7 +21,7 @@ def package_data(pkg, roots):
 
 setup(
     name='xblock-tagging',
-    version='0.1',
+    version='0.1a0',
     description='Office Mix XBlock',
     packages=[
         'tagging',
