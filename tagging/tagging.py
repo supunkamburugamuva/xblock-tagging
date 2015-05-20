@@ -14,13 +14,6 @@ class TaggingXBlock(XBlock):
     """
     An XBlock providing tagging
     """
-
-    # Stored values for the XBlock
-    # href = String(
-    #     help="URL of the Office Mix you want to embed",
-    #     scope=Scope.content,
-    #     default='https://mix.office.com/watch/10g8h9tvipyg8')
-        
     tag = String(
         help="This name appears in the horizontal navigation at the top of the page.",
         scope=Scope.settings,
@@ -35,9 +28,7 @@ class TaggingXBlock(XBlock):
         """
         Studio view part
         """
-        # href = self.href or ''
         tag = self.tag or ''
-
         html_str = self.resource_string("/static/html/tagging_edit.html")
         frag = Fragment(html_str.format(tag=tag))
 
@@ -57,9 +48,7 @@ class TaggingXBlock(XBlock):
         `context` is a dictionary used to configure the display (unused).
         Returns a `Fragment` object specifying the HTML, CSS and JavaScript to display
         """
-        # href = self.href or ''
         tag = self.tag or ''
-        
         html_str = self.resource_string("static/html/tagging.html")
 
         # Construct the HTML
@@ -76,17 +65,14 @@ class TaggingXBlock(XBlock):
 
     @XBlock.json_handler
     def studio_submit(self, data, suffic=''):
-        # self.href = data.get('href')
         self.tag = data.get('tag')
-        
         return {'result': 'success'}
 
     @staticmethod
     def workbench_scenarios():
-        """ Returns a single element which is the Office Mix xblock """
         return [
             ("Tag",
              """
-             <tagging href="https://mix.office.com/watch/1otxpj7hz6kbx" />
+             <tagging/>
              """),
         ]
