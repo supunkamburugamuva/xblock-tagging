@@ -31,11 +31,10 @@ class TaggingXBlock(XBlock):
         data = pkg_resources.resource_string(__name__, path)
         return data.decode("utf8")
 
-    def studio_view(self, context):
+    def studio_view(self, context=None):
         """
         Studio view part
         """
-        
         href = self.href or ''
         tag = self.tag or ''
 
@@ -61,17 +60,7 @@ class TaggingXBlock(XBlock):
         href = self.href or ''
         tag = self.tag or ''
         
-        # Make the oEmbed call to get the embed code 
-        # try:
-            # embed_code, width, height = self.get_embed_code(href)
         html_str = self.resource_string("static/html/tagging.html")
-        # except Exception as ex:
-        #     html_str = self.resource_string("static/html/embed_error.html")
-        #     frag = Fragment(html_str.format(self=self, exception=cgi.escape(str(ex))))
-        #     return frag
-
-        # Grab and round the aspect ratio
-        # ratio = decimal.Decimal(float(height) / width * 100.0)
 
         # Construct the HTML
         frag = Fragment(html_str.format(
@@ -91,20 +80,6 @@ class TaggingXBlock(XBlock):
         self.tag = data.get('tag')
         
         return {'result': 'success'}
-
-    def get_embed_code(self, url):
-        """
-        Makes an oEmbed call out to Office Mix to retrieve the embed code and width and height of the mix
-        for the given url.
-        """
-
-        parameters = { 'url': url }
- 
-        oEmbedRequest = requests.get("https://mix.office.com/oembed/", params = parameters)
-        oEmbedRequest.raise_for_status()
-        responseJson = oEmbedRequest.json()
-
-        return responseJson['html'], responseJson['width'], responseJson['height']
 
     @staticmethod
     def workbench_scenarios():
