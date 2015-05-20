@@ -36,7 +36,7 @@ class TaggingXBlock(XBlock):
         Studio view part
         """
         
-        # href = self.href or ''
+        href = self.href or ''
         tag = self.tag or ''
 
         html_str = self.resource_string("/static/html/tagging_edit.html")
