@@ -1,0 +1,15 @@
+tagging/__init__.py
+tagging/tagging.py
+tagging/static/.DS_Store
+tagging/static/css/tagging.css
+tagging/static/css/tagging_edit.css
+tagging/static/html/embed_error.html
+tagging/static/html/tagging.html
+tagging/static/html/tagging_edit.html
+tagging/static/js/tagging_edit.js
+xblock_tagging.egg-info/PKG-INFO
+xblock_tagging.egg-info/SOURCES.txt
+xblock_tagging.egg-info/dependency_links.txt
+xblock_tagging.egg-info/entry_points.txt
+xblock_tagging.egg-info/requires.txt
+xblock_tagging.egg-info/top_level.txt
