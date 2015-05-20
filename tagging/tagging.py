@@ -16,10 +16,10 @@ class TaggingXBlock(XBlock):
     """
 
     # Stored values for the XBlock
-    # href = String(
-    #     help="URL of the Office Mix you want to embed",
-    #     scope=Scope.content,
-    #     default='https://mix.office.com/watch/10g8h9tvipyg8')
+    href = String(
+        help="URL of the Office Mix you want to embed",
+        scope=Scope.content,
+        default='https://mix.office.com/watch/10g8h9tvipyg8')
         
     tag = String(
         help="This name appears in the horizontal navigation at the top of the page.",
