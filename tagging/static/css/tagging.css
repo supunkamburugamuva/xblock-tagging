@@ -5,7 +5,7 @@
     width: 100%;
     position: relative;
     height: 0;
-    padding-bottom: {aspect_ratio}%;
+    padding-bottom: 0;
 }
 
 .max-aspect-ratio-frame iframe {

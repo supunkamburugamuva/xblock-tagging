@@ -16,10 +16,10 @@ class TaggingXBlock(XBlock):
     """
 
     # Stored values for the XBlock
-    href = String(
-        help="URL of the Office Mix you want to embed", 
-        scope=Scope.content,
-        default='https://mix.office.com/watch/10g8h9tvipyg8')
+    # href = String(
+    #     help="URL of the Office Mix you want to embed",
+    #     scope=Scope.content,
+    #     default='https://mix.office.com/watch/10g8h9tvipyg8')
         
     tag = String(
         help="This name appears in the horizontal navigation at the top of the page.",
@@ -36,11 +36,11 @@ class TaggingXBlock(XBlock):
         Studio view part
         """
         
-        href = self.href or ''
+        # href = self.href or ''
         tag = self.tag or ''
 
         html_str = self.resource_string("/static/html/tagging_edit.html")
-        frag = Fragment(html_str.format(href=cgi.escape(href), tag=cgi.escape(tag)))
+        frag = Fragment(html_str.format(tag=cgi.escape(tag)))
 
         js_str = self.resource_string("/static/js/tagging_edit.js")
         frag.add_javascript(js_str)
@@ -62,26 +62,25 @@ class TaggingXBlock(XBlock):
         tag = self.tag or ''
         
         # Make the oEmbed call to get the embed code 
-        try:
-            embed_code, width, height = self.get_embed_code(href)
-            html_str = self.resource_string("static/html/tagging.html") 
-        except Exception as ex:
-            html_str = self.resource_string("static/html/embed_error.html")
-            frag = Fragment(html_str.format(self=self, exception=cgi.escape(str(ex))))
-            return frag
+        # try:
+            # embed_code, width, height = self.get_embed_code(href)
+        html_str = self.resource_string("static/html/tagging.html")
+        # except Exception as ex:
+        #     html_str = self.resource_string("static/html/embed_error.html")
+        #     frag = Fragment(html_str.format(self=self, exception=cgi.escape(str(ex))))
+        #     return frag
 
         # Grab and round the aspect ratio
-        ratio = decimal.Decimal(float(height) / width * 100.0)
+        # ratio = decimal.Decimal(float(height) / width * 100.0)
 
         # Construct the HTML
         frag = Fragment(html_str.format(
-            self=self, 
-            embed_code=embed_code,
+            self=self,
             tag=cgi.escape(tag)))
 
         # And construct the CSS
         css_str = self.resource_string("static/css/tagging.css")
-        css_str = string.replace(unicode(css_str), "{aspect_ratio}", cgi.escape(unicode(round(ratio, 2))))
+        # css_str = string.replace(unicode(css_str), "{aspect_ratio}", cgi.escape(unicode(round(ratio, 2))))
         frag.add_css(css_str)
         
         return frag
