@@ -39,7 +39,7 @@ class TaggingXBlock(XBlock):
         tag = self.tag or ''
 
         html_str = self.resource_string("/static/html/tagging_edit.html")
-        frag = Fragment(html_str.format(tag=cgi.escape(tag)))
+        frag = Fragment(html_str.format(tag=tag))
 
         js_str = self.resource_string("/static/js/tagging_edit.js")
         frag.add_javascript(js_str)
